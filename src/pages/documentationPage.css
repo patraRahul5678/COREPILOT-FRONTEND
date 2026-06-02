@@ -1,0 +1,984 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+:root {
+  --go-bg: #131313;
+  --go-bg-low: #1b1b1b;
+  --go-bg-mid: #1f1f1f;
+  --go-bg-high: #2a2a2a;
+  --go-bg-highest: #353535;
+  --go-bg-lowest: #0e0e0e;
+  --go-border: rgba(53, 53, 53, 0.5);
+  --go-border-accent: rgba(88, 66, 53, 0.3);
+
+  --go-primary: #ff7a00;
+  --go-primary-dim: #ffb68b;
+  --go-primary-fixed: #ffdbc8;
+  --go-tertiary: #95ccff;
+  --go-on-bg: #e2e2e2;
+  --go-on-surface-variant: #e0c0af;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "Fira Code", "Cascadia Code", "Consolas", monospace;
+}
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--go-bg);
+  color: var(--go-on-bg);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--go-bg-lowest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--go-bg-highest);
+}
+
+/* ── Root Layout ── */
+.go-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--go-bg);
+  overflow-x: hidden;
+}
+
+/* ── Header ── */
+.go-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  height: 64px;
+  background-color: var(--go-bg);
+  border-bottom: 1px solid var(--go-border);
+}
+
+.go-header-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Hamburger — hidden on desktop, shown on mobile via media query */
+.go-hamburger {
+  display: none;
+  flex-shrink: 0;
+}
+
+.go-logo {
+  font-family: var(--font-headline);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--go-primary);
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.go-top-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.go-top-nav-link {
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--go-on-bg);
+  opacity: 0.7;
+  transition: color 0.2s, opacity 0.2s;
+}
+
+.go-top-nav-link:hover {
+  color: var(--go-primary);
+  opacity: 1;
+}
+
+.go-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.go-search-wrap {
+  position: relative;
+}
+
+.go-search-box {
+  display: flex;
+  align-items: center;
+  background-color: var(--go-bg-low);
+  border: 1px solid rgba(88, 66, 53, 0.3);
+  padding: 0.25rem 0.75rem;
+  gap: 0.5rem;
+}
+
+.go-search-icon {
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.go-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--go-on-bg);
+  width: 12rem;
+}
+
+.go-search-input::placeholder {
+  color: rgba(226, 226, 226, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.go-search-kbd {
+  font-size: 0.6rem;
+  opacity: 0.3;
+  border: 1px solid rgba(88, 66, 53, 0.3);
+  padding: 0 0.25rem;
+}
+
+.go-search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background-color: var(--go-bg-low);
+  border: 1px solid rgba(88, 66, 53, 0.3);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.go-search-result {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--go-on-bg);
+  text-align: left;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.go-search-result:hover {
+  background-color: var(--go-bg-highest);
+  color: var(--go-primary);
+}
+
+.go-search-result-icon {
+  font-size: 0.9rem;
+  opacity: 0.5;
+}
+
+.go-search-empty {
+  padding: 0.75rem;
+  font-family: var(--font-headline);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--go-on-bg);
+  opacity: 0.4;
+}
+
+.go-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: var(--go-on-bg);
+  opacity: 0.7;
+  transition: color 0.2s, opacity 0.2s, transform 0.1s;
+}
+
+.go-icon-btn:hover {
+  color: var(--go-primary);
+  opacity: 1;
+}
+
+.go-icon-btn:active {
+  transform: scale(0.95);
+}
+
+.go-icon-btn--disabled {
+  opacity: 0.2;
+  filter: blur(0.5px);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.go-icon-btn--disabled:hover {
+  color: var(--go-on-bg);
+  opacity: 0.2;
+}
+
+.go-avatar {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(88, 66, 53, 0.5);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.go-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.25);
+}
+
+/* ── Body Layout ── */
+.go-body {
+  display: flex;
+  padding-top: 64px;
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
+/* Overlay — hidden by default, shown on mobile when sidebar is open */
+.go-sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 64px 0 0 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 40;
+  backdrop-filter: blur(2px);
+}
+
+/* ── Sidebar ── */
+/* Desktop: always visible, no transform needed */
+.go-sidebar {
+  position: fixed;
+  left: 0;
+  top: 64px;
+  width: 16rem;
+  height: calc(100vh - 64px);
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--go-bg-low);
+  border-right: 1px solid rgba(53, 53, 53, 0.3);
+  z-index: 45;
+  /* No transform on desktop — sidebar is always in place */
+  overflow-y: auto;
+}
+
+.go-sidebar-brand {
+  padding: 0 1.5rem 2rem;
+}
+
+.go-sidebar-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.go-brand-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: var(--go-primary);
+  flex-shrink: 0;
+}
+
+.go-sidebar-title {
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--go-primary);
+}
+
+.go-sidebar-version {
+  font-family: var(--font-headline);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--go-on-bg);
+  opacity: 0.4;
+}
+
+.go-sidebar-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.go-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--go-on-bg);
+  opacity: 0.6;
+  transition: background-color 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.go-sidebar-link:hover {
+  background-color: var(--go-bg-highest);
+  color: var(--go-primary);
+  opacity: 1;
+}
+
+.go-sidebar-link.active {
+  background-color: var(--go-primary);
+  color: var(--go-bg);
+  opacity: 1;
+  font-weight: 700;
+}
+
+.go-sidebar-icon {
+  font-size: 1rem;
+}
+
+.go-sidebar-bottom {
+  border-top: 1px solid rgba(53, 53, 53, 0.3);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+/* ── Main Content ── */
+.go-main {
+  flex: 1;
+  margin-left: 16rem;
+  padding: 3rem;
+  max-width: 860px;
+  min-width: 0;
+}
+
+/* ── Breadcrumb ── */
+.go-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+}
+
+.go-breadcrumb a:hover {
+  color: var(--go-primary);
+  opacity: 1;
+}
+
+.go-breadcrumb-chevron {
+  font-size: 0.75rem;
+}
+
+/* ── Hero ── */
+.go-hero {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.go-hero-accent {
+  position: absolute;
+  left: -3rem;
+  top: 0;
+  width: 4px;
+  height: 6rem;
+  background-color: var(--go-primary);
+}
+
+.go-hero-title {
+  font-family: var(--font-headline);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.go-hero-highlight {
+  color: var(--go-primary);
+}
+
+.go-hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(226, 226, 226, 0.7);
+  max-width: 42rem;
+}
+
+/* ── Bento Grid ── */
+.go-bento {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 900px) {
+  .go-bento {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.go-bento-main {
+  background-color: var(--go-bg-low);
+  padding: 2rem;
+  border-left: 2px solid rgba(255, 122, 0, 0.2);
+}
+
+.go-section-heading {
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  word-break: break-word;
+}
+
+.go-section-num {
+  font-size: 0.75rem;
+  color: var(--go-primary);
+}
+
+.go-section-body {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(226, 226, 226, 0.8);
+  margin-bottom: 2rem;
+}
+
+/* Code Block */
+.go-code-block {
+  position: relative;
+  background-color: var(--go-bg-lowest);
+  border: 1px solid rgba(88, 66, 53, 0.2);
+  padding: 1.5rem;
+}
+
+.go-code-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: rgba(255, 122, 0, 0.5);
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+.go-copy-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--go-on-bg);
+  opacity: 0.3;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.go-copy-btn:hover,
+.go-copy-btn.copied {
+  opacity: 1;
+  color: var(--go-primary);
+}
+
+.go-pre {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.8;
+  overflow-x: auto;
+  color: var(--go-primary-dim);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.go-prompt {
+  color: rgba(0, 58, 92, 0.9);
+}
+
+.go-key {
+  color: var(--go-primary);
+}
+
+/* Status Card */
+.go-bento-status {
+  background-color: rgba(53, 53, 53, 0.3);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.go-status-label {
+  font-family: var(--font-headline);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--go-primary);
+  margin-bottom: 1rem;
+}
+
+.go-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.go-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(88, 66, 53, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.go-status-key {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.go-status-val {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-align: right;
+  word-break: break-word;
+}
+
+.go-val-tertiary {
+  color: var(--go-tertiary);
+}
+
+.go-val-primary {
+  color: var(--go-primary);
+}
+
+.go-status-image {
+  margin-top: auto;
+  padding-top: 2rem;
+  position: relative;
+  height: 8rem;
+  overflow: hidden;
+}
+
+.go-status-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+.go-status-image-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--go-bg-low), transparent);
+}
+
+/* ── Core Principles ── */
+.go-principles {
+  margin-bottom: 5rem;
+}
+
+.go-principles-title {
+  font-family: var(--font-headline);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.go-principles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.go-principle-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.go-principle-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.go-principle-icon-box {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 122, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.go-principle-icon {
+  font-size: 1rem;
+  color: var(--go-primary);
+}
+
+.go-principle-title {
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+}
+
+.go-principle-desc {
+  font-size: 0.8rem;
+  line-height: 1.8;
+  color: rgba(226, 226, 226, 0.6);
+}
+
+/* ── Feedback ── */
+.go-feedback {
+  border-top: 1px solid rgba(88, 66, 53, 0.3);
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.go-feedback-card {
+  background-color: var(--go-bg-low);
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.go-feedback-title {
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.go-feedback-sub {
+  font-size: 0.75rem;
+  color: rgba(226, 226, 226, 0.5);
+}
+
+.go-feedback-btns {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.go-feedback-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid rgba(88, 66, 53, 0.6);
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--go-on-bg);
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.go-feedback-btn:hover {
+  background-color: var(--go-bg-high);
+}
+
+.go-feedback-btn.active {
+  background-color: var(--go-primary);
+  color: var(--go-bg);
+  border-color: var(--go-primary);
+}
+
+/* ── Footer ── */
+/* Desktop: always fully expanded, no toggle button shown */
+.go-footer {
+  width: 100%;
+  margin-left: 16rem;
+  background-color: var(--go-bg-lowest);
+  border-top: 1px solid var(--go-border);
+}
+
+.go-footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+
+/* Toggle button hidden on desktop */
+.go-footer-toggle {
+  display: none;
+}
+
+.go-footer-links {
+  display: flex;
+  gap: 2rem;
+  padding: 0 2rem 1.5rem;
+  /* No transition on desktop — always visible */
+}
+
+.go-footer-copy {
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--go-on-bg);
+  opacity: 0.4;
+}
+
+.go-footer-link {
+  font-family: var(--font-headline);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--go-on-bg);
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.go-footer-link:hover {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — Mobile (< 768px)
+   Sidebar: off-screen by default, slides in on open
+   Footer: collapsible with toggle button
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* Header */
+  .go-header {
+    padding: 0 1rem;
+  }
+
+  .go-hamburger {
+    display: flex;
+  }
+
+  .go-header-left {
+    gap: 0.75rem;
+  }
+
+  .go-top-nav {
+    display: none;
+  }
+
+  .go-search-box {
+    display: none;
+  }
+
+  .go-header-right {
+    gap: 0.5rem;
+  }
+
+  /* Overlay — shown when sidebar is open (React renders it conditionally) */
+  .go-sidebar-overlay {
+    display: block;
+  }
+
+  /* Sidebar: slide off-screen, transition back in */
+  .go-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .go-sidebar--open {
+    transform: translateX(0);
+  }
+
+  /* Main: full width, no left margin */
+  .go-main {
+    margin-left: 0;
+    padding: 2rem 1.25rem;
+    max-width: 100%;
+  }
+
+  .go-footer {
+    margin-left: 0;
+  }
+
+  /* Hide the left accent bar (no room) */
+  .go-hero-accent {
+    display: none;
+  }
+
+  .go-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+
+  .go-hero-desc {
+    font-size: 0.95rem;
+  }
+
+  /* Bento: single column */
+  .go-bento {
+    grid-template-columns: 1fr;
+  }
+
+  /* Principles: single column */
+  .go-principles-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .go-principles-title {
+    font-size: 1.3rem;
+  }
+
+  /* Feedback: stack vertically */
+  .go-feedback-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Footer: show toggle, links collapse */
+  .go-footer-toggle {
+    display: flex;
+    opacity: 0.5;
+    font-size: 1.1rem;
+  }
+
+  .go-footer-links {
+    overflow: hidden;
+    max-height: 5rem;
+    opacity: 1;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .go-footer--collapsed .go-footer-links {
+    max-height: 0;
+    opacity: 0;
+    padding-bottom: 0;
+  }
+
+  .go-pre {
+    font-size: 0.72rem;
+  }
+
+  .go-breadcrumb {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — Small mobile (< 480px)
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 479px) {
+  .go-logo {
+    font-size: 1rem;
+  }
+
+  .go-main {
+    padding: 1.5rem 1rem;
+  }
+
+  .go-bento-main,
+  .go-bento-status {
+    padding: 1.25rem;
+  }
+
+  .go-feedback {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .go-feedback-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .go-feedback-btn {
+    justify-content: center;
+  }
+
+  .go-footer-links {
+    gap: 0.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — Tablet (768px – 1023px)
+   Sidebar visible, main content slightly narrower
+   ═══════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .go-main {
+    padding: 2.5rem 2rem;
+    max-width: 100%;
+  }
+
+  .go-search-input {
+    width: 8rem;
+  }
+}
