@@ -1,55 +1,41 @@
-# COREPILOT — Frontend
+**COREPILOT — What this project is**
 
-Lightweight React frontend built with Vite and TailwindCSS used by the COREPILOT project.
+COREPILOT is an assistive platform that helps maintainers and contributors manage repository health, review workflows, and contributor onboarding. It combines GitHub event processing, automated reviewer reminders, ownership insights, duplicate-detection heuristics, and lightweight AI assistance to reduce friction in open-source contribution workflows.
 
-Quick reference
-- Node: 18+ recommended
-- Package manager: npm or yarn
+Key goals
+- Reduce manual overhead for maintainers by automating routine repository tasks.
+- Surface ownership and reviewer suggestions to speed up reviews.
+- Detect duplicate contributions and triage them automatically.
+- Offer clear, minimal UX for contributors to get status and documentation.
 
-Getting started
+What COREPILOT does (high level)
+- Listens to GitHub webhook events (push, PR opened, issue comments) and processes them in the backend.
+- Runs checks, posts contextual comments, and schedules reviewer reminders when required.
+- Provides ownership insights to match code areas to appropriate reviewers or teams.
+- Uses lightweight AI features (configured on the backend) for duplicate detection and assisting maintainers.
 
-1. Install dependencies
+Frontend role
+- Presents a simple user-facing UI: landing, documentation, status, privacy/security, and contact pages.
+- Displays contribution status and waitlist information for early access features.
+- Integrates with the backend for authenticated interactions, comment previews, and admin actions.
 
-```bash
-npm install
-```
+Architecture overview
+- Frontend: React + Vite, TailwindCSS — static client for user interactions and documentation.
+- Backend: Node.js server handling webhooks, scheduling, AI services, and integrations with GitHub and third-party providers.
+- Data: lightweight persistence for snapshots, installations, waitlist entries, and ownership mappings.
 
-2. Run the development server (HMR)
+Core features and components
+- Webhook handlers: process incoming GitHub events and route them to service handlers.
+- Reviewer reminders: scheduled notifications and escalation for pending reviews.
+- Ownership insights: heuristics and team matching for suggested reviewers.
+- Duplicate detection: detect repeated issues/PRs to reduce noise.
+- Waitlist management: collect and manage early access requests.
 
-```bash
-npm run dev
-```
+Security and secrets
+- The repository excludes local secrets from source control. Runtime secrets (API keys, tokens) are stored outside the repo and injected into the backend runtime/environment.
 
-Production build
+Where to start reading code
+- Frontend pages: `src/pages/` contains the public UI and documentation views.
+- Backend services: `backend/services/` contains the business logic for event processing and integrations.
 
-```bash
-npm run build
-# serve the production build locally
-npm run preview
-```
-
-Linting
-
-```bash
-npm run lint
-```
-
-Environment
-- Local secrets and API keys must live in `backend/.env` or in your environment — do NOT commit `.env` to the repo. The repository already ignores `.env`.
-
-Deployment
-- Build artifacts are produced in `dist/` by `npm run build`. Deploy `dist/` to your static host or include it in your overall deployment pipeline.
-
-Contributors
-- Sync with the canonical remote before working: fetch and reset to avoid merge problems after history rewrites.
-
-```bash
-git fetch origin
-git checkout main
-git reset --hard origin/main
-```
-
-Notes
-- This project uses Vite, React 19, TailwindCSS and a small set of UI dependencies. See `package.json` for exact versions and scripts.
-
-If you want, I can add a short development checklist or CI guidance next.
+If you'd like, I can expand this README with a short architecture diagram, contributor guidelines, or a one-page admin playbook for operations and key rotation.
