@@ -37,5 +37,3 @@ Security and secrets
 Where to start reading code
 - Frontend pages: `src/pages/` contains the public UI and documentation views.
 - Backend services: `backend/services/` contains the business logic for event processing and integrations.
-
-If you'd like, I can expand this README with a short architecture diagram, contributor guidelines, or a one-page admin playbook for operations and key rotation.
