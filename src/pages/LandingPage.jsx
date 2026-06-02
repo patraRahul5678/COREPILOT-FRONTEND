@@ -159,16 +159,16 @@ function Header() {
   return (
     <header className="header">
       <div className="header-nav">
-        <div className="header-logo">
+        <Link to="/" className="header-logo" aria-label="CorePilot home">
           <span className="header-logo-icon">
-            <img src="../corepilot.png" alt="CorePilot Logo" height={200} />
+            <img src="../corepilot.png" alt="CorePilot Logo" className="header-logo-img" />
           </span>
           <div className="header-logo-text-wrapper">
-            <span className="header-logo-text" onClick={() => window.location.href = '/'}>
+            <span className="header-logo-text">
               CORE<span className="header-logo-accent">PILOT</span>
             </span>
           </div>
-        </div>
+        </Link>
         <div className="header-links">
           <Link to="/" className="header-link-active">Platform</Link>
           <Link to="/documentation" className="header-link">Docs</Link>
@@ -648,7 +648,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <div className="footer-logo">COREPILOT</div>
+          <Link to="/" className="footer-logo">COREPILOT</Link>
           <div className="footer-copyright">
             © {new Date().getFullYear()} CorePilot. All rights reserved.
           </div>

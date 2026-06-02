@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from 'react-router-dom';
 import "./documentationPage.css";
 import PageMeta from '../components/PageMeta';
 
@@ -6,7 +7,6 @@ const NAV_LINKS = ["Docs", "Contact"];
 
 const SIDEBAR_LINKS = [
   { icon: "info", label: "Introduction" },
-  { icon: "rocket_launch", label: "Quickstart" },
   { icon: "account_tree", label: "Architecture" },
   { icon: "category", label: "Integrations" },
   { icon: "lock", label: "Security" },
@@ -48,49 +48,6 @@ const PAGES = {
         icon: "rate_review",
         title: "Insights In The PR",
         desc: "One structured GitHub comment per PR: risky files with line numbers, suggested fixes, impacted services and reviewer recommendations.",
-      },
-    ],
-  },
-
-  Quickstart: {
-    breadcrumb: "Quickstart",
-    heroTitle: ["GET COREPILOT", "RUNNING IN"],
-    heroHighlight: "MINUTES",
-    heroDesc:
-      "Install the CorePilot GitHub App, add your credentials and every new pull request receives an AI insight comment automatically.",
-    section: {
-      num: "01",
-      heading: "INSTALL & CONNECT",
-      body:
-        "Clone the repo, fill in your .env with GitHub App, MongoDB and AI provider credentials, then start the server. Point the GitHub App webhook at your instance. Every PR open event triggers the full pipeline from that point on.",
-    },
-    code: `# 1. Install
-$ git clone https://github.com/corepilot-ai/corepilot
-$ cd corepilot/backend && npm install
-
-# 2. Configure
-$ cp .env.example .env
-# GITHUB_APP_ID, GITHUB_PRIVATE_KEY, MONGODB_URI,
-# AI provider key, Jira / Slack / Confluence tokens
-
-# 3. Start
-$ npm start`,
-    codeLabel: "// QUICKSTART",
-    statusItems: [
-      { label: "Setup Time", value: "< 5 min", accent: "tertiary" },
-      { label: "Prerequisites", value: "Node.js · MongoDB", accent: "" },
-      { label: "First Insight", value: "Next PR Open", accent: "primary" },
-    ],
-    principles: [
-      {
-        icon: "webhook",
-        title: "Webhook-Driven",
-        desc: "Fires on pull_request opened. No polling, no cron jobs.",
-      },
-      {
-        icon: "key",
-        title: "Credential Setup",
-        desc: "GitHub and AI provider keys are required. Jira, Slack and Confluence tokens are optional — CorePilot degrades gracefully without them.",
       },
     ],
   },
@@ -368,7 +325,7 @@ export default function DocumentationPage() {
           >
             {sidebarOpen ? "close" : "menu"}
           </button>
-          <span className="go-logo" onClick={() => window.location.href("/")}>COREPILOT</span>
+          <Link to="/" className="go-logo">COREPILOT</Link>
           <nav className="go-top-nav">
             {NAV_LINKS.map((link) => (
               <a

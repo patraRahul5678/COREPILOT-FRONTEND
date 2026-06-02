@@ -140,6 +140,11 @@ body {
   transition: transform 0.2s;
 }
 
+.header-logo {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .header-logo:hover {
   transform: translateY(-1px);
 }
@@ -156,6 +161,12 @@ body {
 .header-logo-icon img {
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.3));
+}
+
+.header-logo-img {
+  width: 48px;
+  height: auto;
+  display: block;
 }
 
 .header-logo-icon::before {
@@ -212,6 +223,19 @@ body {
 @media (min-width: 768px) {
   .header-links {
     display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-logo-img {
+    width: 40px;
+  }
+  .header-logo-text {
+    font-size: 1rem;
+  }
+  .hero-section {
+    padding: 3rem 1rem 3rem;
+    min-height: 480px;
   }
 }
 
