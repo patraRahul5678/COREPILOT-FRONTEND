@@ -125,6 +125,10 @@ body {
   margin: 0 auto;
   gap: 2rem;
 }
+/* allow wrapping to avoid overflow on small screens */
+.header-nav {
+  flex-wrap: wrap;
+}
 
 .header-logo {
   display: flex;
@@ -236,6 +240,33 @@ body {
   .hero-section {
     padding: 3rem 1rem 3rem;
     min-height: 480px;
+  }
+  /* compact header layout for phone/tablet */
+  .header-nav {
+    padding: 0.6rem 1rem;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .header-logo-text-wrapper {
+    display: none;
+  }
+  .header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+  .btn-get-access {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+  }
+  .btn-login {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+  .header-links {
+    display: none;
   }
 }
 
