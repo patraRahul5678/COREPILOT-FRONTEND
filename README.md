@@ -1,18 +1,55 @@
-# React + Vite
+# COREPILOT — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Lightweight React frontend built with Vite and TailwindCSS used by the COREPILOT project.
 
-Currently, two official plugins are available:
+Quick reference
+- Node: 18+ recommended
+- Package manager: npm or yarn
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Getting started
 
-## React Compiler
+1. Install dependencies
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```bash
+npm install
+```
 
-Note: This will impact Vite dev & build performances.
+2. Run the development server (HMR)
 
-## Expanding the ESLint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Production build
+
+```bash
+npm run build
+# serve the production build locally
+npm run preview
+```
+
+Linting
+
+```bash
+npm run lint
+```
+
+Environment
+- Local secrets and API keys must live in `backend/.env` or in your environment — do NOT commit `.env` to the repo. The repository already ignores `.env`.
+
+Deployment
+- Build artifacts are produced in `dist/` by `npm run build`. Deploy `dist/` to your static host or include it in your overall deployment pipeline.
+
+Contributors
+- Sync with the canonical remote before working: fetch and reset to avoid merge problems after history rewrites.
+
+```bash
+git fetch origin
+git checkout main
+git reset --hard origin/main
+```
+
+Notes
+- This project uses Vite, React 19, TailwindCSS and a small set of UI dependencies. See `package.json` for exact versions and scripts.
+
+If you want, I can add a short development checklist or CI guidance next.
