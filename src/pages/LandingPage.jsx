@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 import './LandingPage.css';
 import PageMeta from '../components/PageMeta';
@@ -190,6 +190,7 @@ function Header({ isMobile }) {
 }
 
 function Hero() {
+  const navigate = useNavigate();
   const tripled = [...TERMINAL_LINES, ...TERMINAL_LINES];
   return (
     <section className="hero-section terminal-grid">
@@ -224,7 +225,7 @@ function Hero() {
           </button>
           <button
             className="btn-secondary"
-            onClick={() => (window.location.href = '/doct')}
+            onClick={() => navigate('/doct')}
           >
             View Documentation
           </button>

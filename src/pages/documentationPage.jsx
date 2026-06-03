@@ -434,7 +434,7 @@ export default function DocumentationPage() {
         <main className="go-main">
           {/* Breadcrumbs */}
           <nav className="go-breadcrumb">
-            <a href="/documentation">Docs</a>
+            <a href="/doct">Docs</a>
             <span className="material-symbols-outlined go-breadcrumb-chevron">chevron_right</span>
             <span>{page.breadcrumb}</span>
           </nav>
