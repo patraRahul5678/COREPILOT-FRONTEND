@@ -96,7 +96,27 @@ a {
 .go-header-left {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+.go-back-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(88, 66, 53, 0.3);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.go-back-home:hover {
+  background-color: var(--go-bg-highest);
+  border-color: var(--go-primary);
+}
+
+.go-back-home .material-symbols-outlined {
+  font-size: 1.1rem;
+  color: var(--go-on-bg);
 }
 
 /* Hamburger — hidden on desktop, shown on mobile via media query */

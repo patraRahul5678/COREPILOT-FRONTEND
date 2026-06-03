@@ -155,13 +155,13 @@ function AnimatedPipeline() {
   );
 }
 
-function Header() {
+function Header({ isMobile }) {
   return (
-    <header className="header">
+    <header className={`header${isMobile ? ' header--mobile' : ''}`}>
       <div className="header-nav">
         <Link to="/" className="header-logo" aria-label="CorePilot home">
           <span className="header-logo-icon">
-            <img src="../corepilot.png" alt="CorePilot Logo" className="header-logo-img" />
+            <img src="../corepilot.png" alt="CorePilot Logo" loading="eager" height={200} />
           </span>
           <div className="header-logo-text-wrapper">
             <span className="header-logo-text">
@@ -190,7 +190,7 @@ function Header() {
 }
 
 function Hero() {
-  const tripled = [...TERMINAL_LINES, ...TERMINAL_LINES, ...TERMINAL_LINES];
+  const tripled = [...TERMINAL_LINES, ...TERMINAL_LINES];
   return (
     <section className="hero-section terminal-grid">
       <div className="hero-bg-overlay">
@@ -224,7 +224,7 @@ function Hero() {
           </button>
           <button
             className="btn-secondary"
-            onClick={() => window.location.href = '/documentation'}
+            onClick={() => (window.location.href = '/documentation')}
           >
             View Documentation
           </button>
@@ -388,6 +388,9 @@ function AgentStatusSection() {
               className="data-ingress-img"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZYVRWLj-6aV8dH68KCDJIs_Ai4VOySXsQE2ip1_sYSLMLlYnzotQKG2KE5plIompL6DSsw-33jjTOLht1fiiXaMTKwPC0ZAADJnSPc0uZv9H7TK1M2o9O9c2-lLY9ZlCcbSHHBBBg1fZRduFtMFNXWc5xgPG-tBpTk5MisSAhRCLMsMp8hGVeJAk7MeRbks70w2-FnWDRjyH8XPkTNVLCur-kENvv58ZYbqaC1vXKnR78wknKkobyBfEV97Enq-S9ef0hKKl-BxA"
               alt="abstract technical schematic of server clusters"
+              loading="lazy"
+              width="300"
+              height="128"
             />
             <div className="data-ingress-overlay">
               <div className="data-ingress-stat">
@@ -681,10 +684,27 @@ function Footer() {
 }
 
 export default function LandingPage() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+
+  useEffect(() => {
+    let timeoutId;
+    const onResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+      }, 150);
+    };
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
+
   return (
     <>
       <PageMeta title="CorePilot" description="CorePilot connects to GitHub, Jira, Slack and Confluence — ingesting events and delivering AI-powered risk analysis, ownership insights and suggested fixes." image="/corepilot.png" />
-      <Header />
+      <Header isMobile={isMobile} />
       <main style={{ position: 'relative', overflow: 'hidden' }}>
         <Hero />
         <FeaturesSection />

@@ -326,6 +326,11 @@ export default function DocumentationPage() {
             {sidebarOpen ? "close" : "menu"}
           </button>
           <Link to="/" className="go-logo">COREPILOT</Link>
+          {isMobile && (
+            <Link to="/" className="go-back-home" title="Back to Home">
+              <span className="material-symbols-outlined">home</span>
+            </Link>
+          )}
           <nav className="go-top-nav">
             {NAV_LINKS.map((link) => (
               <a
