@@ -778,6 +778,19 @@ a {
   border-color: var(--go-primary);
 }
 
+.go-feedback-thanks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.go-feedback-check {
+  font-size: 2rem;
+  color: var(--go-primary);
+  flex-shrink: 0;
+}
+
 /* ── Footer ── */
 /* Desktop: always fully expanded, no toggle button shown */
 .go-footer {

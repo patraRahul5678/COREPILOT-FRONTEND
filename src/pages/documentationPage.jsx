@@ -312,6 +312,11 @@ export default function DocumentationPage() {
     }
   };
 
+  const handleFeedback = (type) => {
+    setFeedback(type);
+    setTimeout(() => setFeedback(null), 3000);
+  };
+
   return (
     <div className="go-root">
       <PageMeta title={`Docs · ${page.breadcrumb}`} description={page.heroDesc} image="/corepilot.png" />
@@ -517,26 +522,44 @@ export default function DocumentationPage() {
           {/* Feedback */}
           <section className="go-feedback">
             <div className="go-feedback-card">
-              <div>
-                <h4 className="go-feedback-title">WAS THIS PAGE HELPFUL?</h4>
-                <p className="go-feedback-sub">
-                  Your feedback helps us improve the CorePilot documentation.
-                </p>
-              </div>
-              <div className="go-feedback-btns">
-                <button
-                  className={`go-feedback-btn${feedback === "yes" ? " active" : ""}`}
-                  onClick={() => setFeedback("yes")}
-                >
-                  <span className="material-symbols-outlined">thumb_up</span> YES
-                </button>
-                <button
-                  className={`go-feedback-btn${feedback === "no" ? " active" : ""}`}
-                  onClick={() => setFeedback("no")}
-                >
-                  <span className="material-symbols-outlined">thumb_down</span> NO
-                </button>
-              </div>
+              {!feedback ? (
+                <>
+                  <div>
+                    <h4 className="go-feedback-title">WAS THIS PAGE HELPFUL?</h4>
+                    <p className="go-feedback-sub">
+                      Your feedback helps us improve the CorePilot documentation.
+                    </p>
+                  </div>
+                  <div className="go-feedback-btns">
+                    <button
+                      className="go-feedback-btn"
+                      onClick={() => handleFeedback("yes")}
+                    >
+                      <span className="material-symbols-outlined">thumb_up</span> YES
+                    </button>
+                    <button
+                      className="go-feedback-btn"
+                      onClick={() => handleFeedback("no")}
+                    >
+                      <span className="material-symbols-outlined">thumb_down</span> NO
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="go-feedback-thanks">
+                  <span className="material-symbols-outlined go-feedback-check">check_circle</span>
+                  <div>
+                    <h4 className="go-feedback-title">
+                      {feedback === "yes" ? "THANK YOU!" : "THANKS FOR YOUR FEEDBACK"}
+                    </h4>
+                    <p className="go-feedback-sub">
+                      {feedback === "yes" 
+                        ? "We're glad this page was helpful."
+                        : "We'll work on improving this page."}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         </main>

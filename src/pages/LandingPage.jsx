@@ -171,7 +171,7 @@ function Header({ isMobile }) {
         </Link>
         <div className="header-links">
           <Link to="/" className="header-link-active">Platform</Link>
-          <Link to="/documentation" className="header-link">Docs</Link>
+          <Link to="/doct" className="header-link">Docs</Link>
           <Link to="/contact" className="header-link">Contact</Link>
         </div>
         <div className="header-actions">
@@ -224,7 +224,7 @@ function Hero() {
           </button>
           <button
             className="btn-secondary"
-            onClick={() => (window.location.href = '/documentation')}
+            onClick={() => (window.location.href = '/doct')}
           >
             View Documentation
           </button>
@@ -303,7 +303,7 @@ function Hero() {
   );
 }
 
-// ── Features ──────────────────────────────────────────────────────────────────
+//Features 
 function FeaturesSection() {
   return (
     <section className="features-section">
@@ -335,7 +335,7 @@ function FeaturesSection() {
   );
 }
 
-// ── Agent Status ──────────────────────────────────────────────────────────────
+//Agent Status 
 function AgentStatusSection() {
   return (
     <section className="agent-section">
@@ -386,7 +386,7 @@ function AgentStatusSection() {
           <div className="data-ingress-visual">
             <img
               className="data-ingress-img"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZYVRWLj-6aV8dH68KCDJIs_Ai4VOySXsQE2ip1_sYSLMLlYnzotQKG2KE5plIompL6DSsw-33jjTOLht1fiiXaMTKwPC0ZAADJnSPc0uZv9H7TK1M2o9O9c2-lLY9ZlCcbSHHBBBg1fZRduFtMFNXWc5xgPG-tBpTk5MisSAhRCLMsMp8hGVeJAk7MeRbks70w2-FnWDRjyH8XPkTNVLCur-kENvv58ZYbqaC1vXKnR78wknKkobyBfEV97Enq-S9ef0hKKl-BxA"
+              src="../server.png"
               alt="abstract technical schematic of server clusters"
               loading="lazy"
               width="300"
@@ -633,12 +633,16 @@ function CTASection() {
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.25rem' }}>
           <ReCAPTCHA
             ref={recaptchaRef}
-            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}
+            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
             theme="dark"
             size="normal"
             onChange={token => { setCaptchaToken(token); setStatus('idle'); setMessage(''); }}
             onExpired={() => { setCaptchaToken(null); }}
-            onErrored={() => { setCaptchaToken(null); setStatus('error'); setMessage('reCAPTCHA error. Please refresh the page.'); }}
+            onErrored={() => { 
+              setCaptchaToken(null); 
+              setStatus('error'); 
+              setMessage('reCAPTCHA error. Please check your connection or refresh the page.'); 
+            }}
           />
         </div>
       )}
@@ -682,7 +686,7 @@ function Footer() {
             { label: 'Privacy', to: '/privacy' },
             { label: 'Terms', to: '/terms' },
             { label: 'Security', to: '/security' },
-            { label: 'Documentation', to: '/documentation' },
+            { label: 'Documentation', to: '/doct' },
             { label: 'Contact', to: '/contact' },
           ].map(({ label, to }) => (
             to.startsWith('/') ? (
