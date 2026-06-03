@@ -338,13 +338,13 @@ export default function DocumentationPage() {
           )}
           <nav className="go-top-nav">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link}
-                href={link === 'Contact' ? '/contact' : '/documentation'}
+                to={link === 'Contact' ? '/contact' : '/doct'}
                 className="go-top-nav-link"
               >
                 {link}
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -422,10 +422,10 @@ export default function DocumentationPage() {
 
           <div className="go-sidebar-bottom">
             {SIDEBAR_BOTTOM.map(({ icon, label, href }) => (
-              <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined} className="go-sidebar-link">
+              <Link key={label} to={href} className="go-sidebar-link">
                 <span className="material-symbols-outlined go-sidebar-icon">{icon}</span>
                 {label}
-              </a>
+              </Link>
             ))}
           </div>
         </aside>
@@ -434,7 +434,7 @@ export default function DocumentationPage() {
         <main className="go-main">
           {/* Breadcrumbs */}
           <nav className="go-breadcrumb">
-            <a href="/doct">Docs</a>
+            <Link to="/doct">Docs</Link>
             <span className="material-symbols-outlined go-breadcrumb-chevron">chevron_right</span>
             <span>{page.breadcrumb}</span>
           </nav>
@@ -587,9 +587,9 @@ export default function DocumentationPage() {
             { label: "Terms of Service", href: "/terms" },
             { label: "Security", href: "/security" },
           ].map(({ label, href }) => (
-            <a key={label} href={href} className="go-footer-link">
+            <Link key={label} to={href} className="go-footer-link">
               {label}
-            </a>
+            </Link>
           ))}
         </div>
       </footer>
