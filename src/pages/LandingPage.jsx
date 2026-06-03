@@ -529,16 +529,31 @@ function CTASection() {
     setStatus('loading');
 
     try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      console.log('Submitting to:', `${apiUrl}/api/waitlist`);
+      
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/waitlist`,
+        `${apiUrl}/api/waitlist`,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: trimmed, recaptchaToken: captchaToken }),
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ 
+            email: trimmed, 
+            recaptchaToken: captchaToken 
+          }),
         }
       );
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonError) {
+        console.error('Failed to parse response:', jsonError);
+        throw new Error('Invalid server response');
+      }
 
       // Reset captcha regardless of outcome
       recaptchaRef.current?.reset();
@@ -554,13 +569,17 @@ function CTASection() {
       } else if (res.status === 429) {
         setStatus('error');
         setMessage('Too many attempts. Please wait 15 minutes and try again.');
+      } else if (res.status === 400) {
+        setStatus('error');
+        setMessage(data.error || 'Invalid request. Please check your input and try again.');
       } else {
         setStatus('error');
         setMessage(data.error || 'Something went wrong. Please try again.');
       }
-    } catch {
+    } catch (error) {
+      console.error('Submission error:', error);
       setStatus('error');
-      setMessage('Could not reach the server. Please try again later.');
+      setMessage('Could not reach the server. Please check your connection and try again.');
       recaptchaRef.current?.reset();
       setCaptchaToken(null);
     }
@@ -616,8 +635,10 @@ function CTASection() {
             ref={recaptchaRef}
             sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'}
             theme="dark"
+            size="normal"
             onChange={token => { setCaptchaToken(token); setStatus('idle'); setMessage(''); }}
             onExpired={() => { setCaptchaToken(null); }}
+            onErrored={() => { setCaptchaToken(null); setStatus('error'); setMessage('reCAPTCHA error. Please refresh the page.'); }}
           />
         </div>
       )}
