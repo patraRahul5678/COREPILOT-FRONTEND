@@ -190,7 +190,7 @@ Audit Logs       All events logged for compliance`,
       body:
         "MVP 1 posts insights to GitHub on every PR open. MVP 2 brings the same insights into VS Code — inline annotations, sidebar panel, chat assistant, one-click fixes. MVP 3 is a fully AI-native IDE with PR/ticket view, risk dashboard and agent mode.",
     },
-    code: `MVP 1  PR Chat Integration     ✓ LIVE
+    code: `MVP 1  PR Chat Integration     ✓ In Progress
   GitHub PR Comment on every PR open
 
 MVP 2  VS Code Extension         coming next
@@ -200,7 +200,7 @@ MVP 3  CorePilot IDE             future
   AI-native editor · Risk dashboard · Agent mode`,
     codeLabel: "// ROADMAP",
     statusItems: [
-      { label: "MVP 1", value: "Live", accent: "primary" },
+      { label: "MVP 1", value: "In Progress", accent: "primary" },
       { label: "MVP 2", value: "VS Code Ext.", accent: "tertiary" },
       { label: "MVP 3", value: "CorePilot IDE", accent: "" },
     ],
