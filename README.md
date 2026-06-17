@@ -1,6 +1,28 @@
-**COREPILOT — What this project is**
+🚀 COREPILOT Frontend
+🌐 Live Demo
 
-COREPILOT is an assistive platform that helps maintainers and contributors manage repository health, review workflows, and contributor onboarding. It combines GitHub event processing, automated reviewer reminders, ownership insights, duplicate-detection heuristics, and lightweight AI assistance to reduce friction in open-source contribution workflows.
+👉 Visit COREPILOT(www.corepilot.online)
+
+Replace the above URL with your deployed frontend URL.
+
+📖 About the Project
+
+COREPILOT is an assistive platform designed to help maintainers and contributors navigate open-source contribution workflows more efficiently.
+
+This repository contains the frontend application, which provides the user-facing experience for the COREPILOT platform, including product information, documentation, onboarding resources, waitlist registration, contribution status views, and platform insights.
+
+The frontend is built with React and Tailwind CSS to deliver a fast, responsive, and modern user experience.
+
+🎯 Purpose
+
+The COREPILOT frontend aims to:
+
+Simplify contributor onboarding
+Present repository health insights
+Provide documentation and support resources
+Showcase platform capabilities
+Manage early-access waitlists
+Offer a clean and intuitive user experience
 
 Key goals
 - Reduce manual overhead for maintainers by automating routine repository tasks.
