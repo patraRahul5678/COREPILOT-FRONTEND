@@ -7,6 +7,7 @@ import TermsPage from "./pages/TermsPage";
 import SecurityPage from "./pages/SecurityPage";
 import StatusPage from "./pages/StatusPage";
 import ContactPage from "./pages/ContactPage";
+import OnboardingPage from "./pages/OnboardingPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/security" element={<SecurityPage/>} />
       <Route path="/status" element={<StatusPage/>} />
       <Route path="/contact" element={<ContactPage/>} />
+      <Route path="/onboarding" element={<OnboardingPage/>} />
     </Routes>
 
   );
