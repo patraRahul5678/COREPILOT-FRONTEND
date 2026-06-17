@@ -1,61 +1,189 @@
-🚀 COREPILOT Frontend
-🌐 Live Demo
+# 🚀 COREPILOT Frontend
 
-👉 Visit COREPILOT(www.corepilot.online)
+The frontend application for **COREPILOT**, a developer productivity platform designed to reduce context switching by connecting GitHub, Jira, Slack, and Confluence while providing AI-powered code insights and workflow assistance.
 
-Replace the above URL with your deployed frontend URL.
+---
 
-📖 About the Project
+## 🌐 Live Demo
 
-COREPILOT is an assistive platform designed to help maintainers and contributors navigate open-source contribution workflows more efficiently.
+👉 **[Visit COREPILOT](https://www.corepilot.online)**
 
-This repository contains the frontend application, which provides the user-facing experience for the COREPILOT platform, including product information, documentation, onboarding resources, waitlist registration, contribution status views, and platform insights.
+---
 
-The frontend is built with React and Tailwind CSS to deliver a fast, responsive, and modern user experience.
+## 📖 About COREPILOT
 
-🎯 Purpose
+COREPILOT is an AI-powered developer productivity platform that connects engineering tools such as GitHub, Jira, Slack, and Confluence into a unified workflow.
 
-The COREPILOT frontend aims to:
+The platform helps developers, reviewers, and engineering teams reduce context switching by automatically gathering relevant information from repositories, tickets, team discussions, and documentation.
 
-Simplify contributor onboarding
-Present repository health insights
-Provide documentation and support resources
-Showcase platform capabilities
-Manage early-access waitlists
-Offer a clean and intuitive user experience
+COREPILOT analyzes code changes, tracks related Jira tickets, surfaces relevant Confluence documentation, and provides contextual insights directly within the development workflow.
 
-Key goals
-- Reduce manual overhead for maintainers by automating routine repository tasks.
-- Surface ownership and reviewer suggestions to speed up reviews.
-- Detect duplicate contributions and triage them automatically.
-- Offer clear, minimal UX for contributors to get status and documentation.
+Its mission is to accelerate software delivery, improve collaboration, and reduce manual effort across engineering teams.
 
-What COREPILOT does (high level)
-- Listens to GitHub webhook events (push, PR opened, issue comments) and processes them in the backend.
-- Runs checks, posts contextual comments, and schedules reviewer reminders when required.
-- Provides ownership insights to match code areas to appropriate reviewers or teams.
-- Uses lightweight AI features (configured on the backend) for duplicate detection and assisting maintainers.
+---
 
-Frontend role
-- Presents a simple user-facing UI: landing, documentation, status, privacy/security, and contact pages.
-- Displays contribution status and waitlist information for early access features.
-- Integrates with the backend for authenticated interactions, comment previews, and admin actions.
+## 🎯 Key Goal
 
-Architecture overview
-- Frontend: React + Vite, TailwindCSS — static client for user interactions and documentation.
-- Backend: Node.js server handling webhooks, scheduling, AI services, and integrations with GitHub and third-party providers.
-- Data: lightweight persistence for snapshots, installations, waitlist entries, and ownership mappings.
+To reduce developer context switching by bringing code, tickets, documentation, and team communication into one intelligent platform powered by AI.
 
-Core features and components
-- Webhook handlers: process incoming GitHub events and route them to service handlers.
-- Reviewer reminders: scheduled notifications and escalation for pending reviews.
-- Ownership insights: heuristics and team matching for suggested reviewers.
-- Duplicate detection: detect repeated issues/PRs to reduce noise.
-- Waitlist management: collect and manage early access requests.
+---
 
-Security and secrets
-- The repository excludes local secrets from source control. Runtime secrets (API keys, tokens) are stored outside the repo and injected into the backend runtime/environment.
+## 🚀 What COREPILOT Does
 
-Where to start reading code
-- Frontend pages: `src/pages/` contains the public UI and documentation views.
-- Backend services: `backend/services/` contains the business logic for event processing and integrations.
+COREPILOT acts as an AI-powered engineering workspace that connects development tools into a single intelligent experience.
+
+The platform:
+
+* Connects GitHub repositories and monitors code changes
+* Integrates with Jira for ticket tracking and project visibility
+* Connects Slack to surface relevant discussions and updates
+* Retrieves documentation from Confluence
+* Analyzes modified files and code changes
+* Provides contextual insights based on project activity
+* Links code changes with requirements and documentation
+* Assists engineering teams in making informed development decisions
+
+By consolidating engineering context into one place, COREPILOT helps teams collaborate more effectively and deliver software faster.
+
+---
+
+## ✨ Frontend Features
+
+* Modern SaaS-style Landing Page
+* Responsive Design for Desktop, Tablet, and Mobile
+* Documentation & Resource Pages
+* Waitlist Registration System
+* Contact & Support Pages
+* Privacy & Security Information
+* Smooth Animations and Transitions
+* Fast Performance with Vite
+* Accessible User Interface
+* Authentication UI
+* Product Showcase Pages
+
+---
+
+## 🔗 Integrations
+
+### 🐙 GitHub
+
+* Repository Connections
+* Commit Monitoring
+* Pull Request Tracking
+* Code Change Analysis
+* Changed File Detection
+
+### 🎫 Jira
+
+* Ticket Synchronization
+* Sprint Tracking
+* Issue Visibility
+* Development Workflow Mapping
+
+### 💬 Slack
+
+* Team Communication Context
+* Notification Workflows
+* Development Discussions
+
+### 📚 Confluence
+
+* Documentation Discovery
+* Knowledge Base Access
+* Context-Aware Resource Retrieval
+
+---
+
+## 🤖 AI-Powered Insights
+
+COREPILOT leverages AI to:
+
+* Understand code modifications
+* Summarize changes
+* Surface relevant project context
+* Link related tickets and documentation
+* Generate actionable recommendations
+* Improve engineering productivity
+
+---
+
+## 🛣️ Product Roadmap
+
+### MVP 1
+
+* GitHub Integration
+* Jira Integration
+* Slack Integration
+* Confluence Integration
+* Code Change Analysis
+* Context Aggregation Across Engineering Tools
+* Unified Developer Dashboard
+  
+---
+
+## 🏗️ Architecture Overview
+
+### Frontend
+
+* React
+* Vite
+* Tailwind CSS
+* React Router
+* Framer Motion
+
+### Backend Platform
+
+The COREPILOT backend handles:
+
+* GitHub Webhooks
+* Integration Services
+* AI Processing
+* Authentication
+* Scheduling Tasks
+* Data Aggregation
+* Notification Services
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology    | Purpose           |
+| ------------- | ----------------- |
+| React         | User Interface    |
+| Vite          | Build Tool        |
+| Tailwind CSS  | Styling           |
+| React Router  | Routing           |
+| Framer Motion | Animations        |
+| Axios         | API Communication |
+
+
+---
+
+## 🎯 Vision
+
+COREPILOT aims to become an AI-powered engineering copilot that understands repositories, tickets, documentation, and team communication.
+
+By connecting engineering tools into a single intelligent workspace, COREPILOT helps teams spend less time searching for context and more time building great software.
+
+---
+
+## 👨‍💻 Developer
+
+**Rahul Patra**
+
+* GitHub: https://github.com/patraRahul5678
+
+---
+
+## 📄 License
+
+This repository is publicly visible for portfolio and demonstration purposes only.
+
+The source code is proprietary and may not be copied, modified, redistributed, deployed, or used without explicit written permission from the author.
+
+See the LICENSE file for details.
+
+---
+
+⭐ If you found this project interesting, consider giving the repository a star.
+
