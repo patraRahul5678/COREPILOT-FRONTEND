@@ -161,7 +161,7 @@ function Header({ isMobile }) {
       <div className="header-nav">
         <Link to="/" className="header-logo" aria-label="CorePilot home">
           <span className="header-logo-icon">
-            <img src="../corepilot.png" alt="CorePilot Logo" loading="eager" height={200} />
+          <img src="../corepilot.png" alt="CorePilot Logo" loading="eager" fetchpriority="high" width="200" height="200" />
           </span>
           <div className="header-logo-text-wrapper">
             <span className="header-logo-text">
@@ -390,6 +390,7 @@ function AgentStatusSection() {
               src="../server.png"
               alt="abstract technical schematic of server clusters"
               loading="lazy"
+              decoding="async"
               width="300"
               height="128"
             />
